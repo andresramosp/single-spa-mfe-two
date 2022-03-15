@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ 'Hello from Micro Frontend Two (Vue 3)' }}</h1>
+    <h1>{{ 'Micro Frontend Two (Vue 3 + PrimeFaces)' }}</h1>
     <ChildComponent />
   </div>
 </template>
