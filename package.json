@@ -1,5 +1,5 @@
 {
-  "name": "hello-world",
+  "name": "mfe-two",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "element-plus": "^2.0.6",
+    "moment": "^2.29.1",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.1",
     "single-spa-vue": "^2.1.0",

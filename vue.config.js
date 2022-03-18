@@ -5,6 +5,11 @@ module.exports = defineConfig({
   configureWebpack: {
     output: {
       libraryTarget: 'system'
-    }
+    },
+    externals: [
+      'element-plus',
+      'vue',
+      'moment'
+    ]
   }
 })

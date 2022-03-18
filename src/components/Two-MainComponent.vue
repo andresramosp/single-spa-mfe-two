@@ -1,27 +1,34 @@
 <template>
   <div class="hello">
-    <h1>{{ 'Micro Frontend Two (Vue 3 + PrimeFaces)' }}</h1>
+    <h1>{{ "Micro Frontend Two (Vue 3 + Element Plus)" }}</h1>
     <ChildComponent />
+    <br />
+    <span style="color: #409eff">{{ message }}</span>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
-import ChildComponent from './ChildComponent.vue'
+import ChildComponent from "./Two-ChildComponent.vue";
 
 export default {
   components: {
-    ChildComponent
+    ChildComponent,
   },
-  props: {
-  },
+  props: {},
 
   setup() {
     const count = ref(0);
+    const message = ref("");
+
+    window.addEventListener("hello-event", () => {
+      message.value = "Hello!";
+    });
 
     // expose to template and other options API hooks
     return {
       count,
+      message,
     };
   },
 
