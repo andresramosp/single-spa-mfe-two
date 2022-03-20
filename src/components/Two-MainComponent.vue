@@ -1,13 +1,11 @@
 <template>
   <div class="hello">
-      <div class="login-info">
-      <div class="logged" v-if="logged">
-        Logged in with token {{ token }}
-      </div>
+    <div class="login-info">
+      <div class="logged" v-if="logged">Logged in with token {{ token }}</div>
       <div class="not-logged" v-else>Not Logged</div>
     </div>
     <h1>{{ "Micro Frontend Two (Vue 3 + Element Plus)" }}</h1>
-    <ChildComponent />
+    <ChildComponent v-if="logged" />
     <br />
     <span style="color: #409eff">{{ message }}</span>
   </div>
@@ -17,7 +15,6 @@
 import { ref } from "vue";
 import ChildComponent from "./Two-ChildComponent.vue";
 import { auth$ } from "org/auth";
-
 
 export default {
   components: {
@@ -29,7 +26,7 @@ export default {
     const count = ref(0);
     const message = ref("");
 
-        const logged = ref(false);
+    const logged = ref(false);
     const user = ref("");
     const token = ref("");
 
@@ -37,20 +34,17 @@ export default {
       message.value = "Hello!";
     });
 
-
-
-     auth$.subscribe((payload) => {
+    auth$.subscribe((payload) => {
       token.value = payload.sessionToken;
       user.value = payload.user;
       logged.value = payload.sessionToken !== null;
     });
 
-
     // expose to template and other options API hooks
     return {
       count,
       message,
-        logged,
+      logged,
       user,
       token,
     };
@@ -78,5 +72,13 @@ li {
 }
 a {
   color: #42b983;
+}
+.not-logged {
+  background-color: pink;
+  width: 100px;
+}
+.logged {
+  background-color: greenyellow;
+  width: 250px;
 }
 </style>
