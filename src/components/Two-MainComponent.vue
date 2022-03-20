@@ -1,5 +1,11 @@
 <template>
   <div class="hello">
+      <div class="login-info">
+      <div class="logged" v-if="logged">
+        Logged in with token {{ token }}
+      </div>
+      <div class="not-logged" v-else>Not Logged</div>
+    </div>
     <h1>{{ "Micro Frontend Two (Vue 3 + Element Plus)" }}</h1>
     <ChildComponent />
     <br />
@@ -10,6 +16,8 @@
 <script>
 import { ref } from "vue";
 import ChildComponent from "./Two-ChildComponent.vue";
+import { auth$ } from "org/auth";
+
 
 export default {
   components: {
@@ -21,14 +29,30 @@ export default {
     const count = ref(0);
     const message = ref("");
 
+        const logged = ref(false);
+    const user = ref("");
+    const token = ref("");
+
     window.addEventListener("hello-event", () => {
       message.value = "Hello!";
     });
+
+
+
+     auth$.subscribe((payload) => {
+      token.value = payload.sessionToken;
+      user.value = payload.user;
+      logged.value = payload.sessionToken !== null;
+    });
+
 
     // expose to template and other options API hooks
     return {
       count,
       message,
+        logged,
+      user,
+      token,
     };
   },
 
